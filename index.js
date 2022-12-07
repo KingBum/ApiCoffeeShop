@@ -17,7 +17,10 @@ app.use(express.json());
 app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 
-mongoose.connect(process.env.MONGO_URL).then(console.log("Connected to MongoDB")).catch((err) => console.log(err))
+const MONGO_URL1 = "mongodb+srv://dbUser:dbUser@mywebsite.a9pvj.mongodb.net/CoffeeShop?retryWrites=true&w=majority"
+
+
+mongoose.connect(MONGO_URL1).then(console.log("Connected to MongoDB")).catch((err) => console.log(err))
 
 
 const storage = multer.diskStorage({
