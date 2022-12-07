@@ -6,7 +6,7 @@ const register = async (req, res) => {
     const hashedPass = await bcrypt.hash(req.body.password, salt);
     const newUser = new User({
         email: req.body.email,
-        username : req.body.email,
+        username : req.body.username,
         password: hashedPass
     })
     try {
