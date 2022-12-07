@@ -5,8 +5,7 @@ const register = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPass = await bcrypt.hash(req.body.password, salt);
     const newUser = new User({
-        username: req.body.username,
-        phone : req.body.phone,
+        email: req.body.email,
         password: hashedPass
     })
     try {
@@ -19,7 +18,7 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     try {
-        const checkUserName = await User.findOne({ username: req.body.username })
+        const checkUserName = await User.findOne({ email: req.body.email })
         !checkUserName && res.status(401).json("Don't Found User")
 
         const hasdedPassword = await bcrypt.compare(req.body.password, checkUserName.password)
